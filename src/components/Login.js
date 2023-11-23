@@ -1,14 +1,18 @@
-import React, { useState, useRef } from 'react'
-import Header from './Header'
-import { BG_URL } from '../utils/constants'
-import { checkValidData } from '../utils/validate'
+import React, { useState, useRef, } from 'react';
+import Header from './Header';
+import { BG_URL, USER_AVATAR } from '../utils/constants';
+import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addUser } from '../utils/userSlice';
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
@@ -28,30 +32,25 @@ const Login = () => {
             )
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    updateProfile(user, {
-                        displayName: name.current.value,
-                        photoURL: USER_AVATAR,
+                    updateProfile(auth.currentUser, {
+                        displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/72400641?s=400&u=a73d43705ac19aaa619a9ef4ab3babea75251753&v=4"
                     })
                         .then(() => {
                             const { uid, email, displayName, photoURL } = auth.currentUser;
-                            dispatch(
-                                addUser({
-                                    uid: uid,
-                                    email: email,
-                                    displayName: displayName,
-                                    photoURL: photoURL,
-                                })
-                            );
-                        })
-                        .catch((error) => {
-                            setErrorMessage(error.message);
+                            dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }))
+                            navigate("/browse")
+                        }).catch((error) => {
+                            setErrorMessage(error.message)
                         });
                 })
+
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setErrorMessage(errorCode + "-" + errorMessage);
-                });
+
+                }
+                );
 
         } else {
             //sign in 
@@ -63,6 +62,8 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed in
                     const user = userCredential.user;
+                    console.log(user);
+                    navigate("/browse")
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -115,6 +116,6 @@ const Login = () => {
             </form>
         </div>
     )
-}
+};
 
-export default Login
+export default Login;
