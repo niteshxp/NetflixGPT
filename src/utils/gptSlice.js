@@ -7,10 +7,10 @@ const gptSlice = createSlice({
     },
     reducers: {
         toggleGptSearchView: (state) => {
-            state.showGptSearch = !showGptSearch;
+            state.showGptSearch = !state.showGptSearch;
         }
     }
 })
 
-export const { showGptSearch } = gptSlice.actions;
+export const { toggleGptSearchView } = gptSlice.actions;
 export default gptSlice.reducer;
