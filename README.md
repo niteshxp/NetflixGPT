@@ -1,5 +1,5 @@
 # Netflix GPT
-Link - www.netflixai.netlify.com
+Link - https://netflixai.netlify.app/
 - Create React App
 - Configured TailwindCSS
 - Header
