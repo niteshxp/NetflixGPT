@@ -98,12 +98,14 @@ const Login = () => {
                     ref={email}
                     type='text'
                     placeholder='Email Address'
+                     value="john@gmail.com"
                     className='p-4 my-4 w-full bg-gray-700 rounded-lg'
                 />
                 <input
                     ref={password}
                     type='password'
                     placeholder='Password'
+                    value="John@123"
                     className='p-4 my-4  w-full bg-gray-700 rounded-lg'
                 />
                 <p className='text-red-500 font-semibold'>{errorMessage}</p>
