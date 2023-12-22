@@ -4,7 +4,6 @@ import movieSlice from "./movieSlice";
 import gptSlice from "./gptSlice";
 import configSlice from "./configSlice";
 
-
 const appStore = configureStore(
     {
         reducer: {

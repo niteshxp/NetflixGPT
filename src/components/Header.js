@@ -10,9 +10,7 @@ import { addUser, removeUser } from "../utils/userSlice"
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from '../utils/configSlice'
 
-
 const Header = () => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector(store => store.user)
@@ -23,7 +21,6 @@ const Header = () => {
         }).catch((error) => {
             navigate("/error")
         });
-
     }
 
     useEffect(() => {
@@ -37,7 +34,6 @@ const Header = () => {
                 navigate("/")
             }
         });
-
         // Unsiubscribe when component unmounts
         return () => unsubscribe();
 
@@ -48,7 +44,6 @@ const Header = () => {
     }
 
     const handleLanguageChange = (e) => {
-        // console.log(e.target.value);
         dispatch(changeLanguage(e.target.value))
     }
 
@@ -61,7 +56,6 @@ const Header = () => {
             /></a>
             {user &&
                 (<div className='flex p-2 '>
-
                     {showGptSearch &&
                         (<select
                             className='p-2 bg-gray-900 text-white m-2'
@@ -73,8 +67,8 @@ const Header = () => {
                                         value={lang.identifier}>
                                         {lang.name}
                                     </option>)}
-                        </select>)}
-
+                        </select>)
+                    }
                     <button
                         className='py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg'
                         onClick={handleGptSearchClick}
@@ -87,7 +81,12 @@ const Header = () => {
                         alt='user'
                         src={user?.photoURL}
                     />
-                    <button className="font-bold text-white " onClick={handleSignOut}>(Sign Out)</button>
+                    <button
+                        className="font-bold text-white "
+                        onClick={handleSignOut}
+                    >
+                        (Sign Out)
+                    </button>
                 </div>)}
         </div>
     )

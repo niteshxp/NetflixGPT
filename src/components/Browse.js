@@ -9,26 +9,24 @@ import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 
 const Browse = () => {
-  const showGptSearch = useSelector(store => store.gpt.showGptSearch);
+
   useNowPlayingMovies();
   usePopularMovies();
   useUpcomingMovies();
   useTopratedMovies();
-  // console.log(useTopratedMovies);
+
+  const showGptSearch = useSelector(store => store.gpt.showGptSearch);
 
   return (
     <div>
       <Header />
       {
-        showGptSearch ? <GptSearch />
-          :
+        showGptSearch ? <GptSearch /> :
           <>
             <MainContainer />
             <SecondaryContainer />
           </>
       }
-
-
     </div>
   )
 }

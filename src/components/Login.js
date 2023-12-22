@@ -20,8 +20,7 @@ const Login = () => {
         setErrorMessage(message);
         if (message) return;
 
-        // Sign in/up logic
-        
+        // Sign in and Sign up logic
         if (!isSignInForm) {
             //Sign up logic
             createUserWithEmailAndPassword(
@@ -42,15 +41,12 @@ const Login = () => {
                             setErrorMessage(error.message)
                         });
                 })
-
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setErrorMessage(errorCode + "-" + errorMessage);
-
                 }
                 );
-
         } else {
             //sign in 
             signInWithEmailAndPassword(
@@ -61,7 +57,6 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed in
                     const user = userCredential.user;
-
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -70,11 +65,9 @@ const Login = () => {
                 });
         }
     }
-
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
     }
-
 
     return (
         <div>
@@ -98,7 +91,8 @@ const Login = () => {
                         type='text'
                         placeholder='Full Name'
                         className='p-4 my-4 w-full bg-gray-700 rounded-lg'
-                    />}
+                    />
+                }
                 <input
                     ref={email}
                     type='text'
@@ -114,13 +108,19 @@ const Login = () => {
                     className='p-4 my-4  w-full bg-gray-700 rounded-lg'
                 />
                 <p className='text-red-500 font-semibold'>{errorMessage}</p>
-                <button className='p-4 my-6 bg-red-700 w-full rounded-lg' onClick={handleClick}> {isSignInForm ? "Sign In" : "Sign Up"}</button>
-
-                <p className='py-4 cursor-pointer' onClick={toggleSignInForm}>{isSignInForm ? "New to Netflix? Sign Up Now" : "Already registered? Sign In Now"}</p>
-
+                <button
+                    className='p-4 my-6 bg-red-700 w-full rounded-lg'
+                    onClick={handleClick}
+                >
+                    {isSignInForm ? "Sign In" : "Sign Up"}
+                </button>
+                <p className='py-4 cursor-pointer'
+                    onClick={toggleSignInForm}
+                >
+                    {isSignInForm ? "New to Netflix? Sign Up Now" : "Already registered? Sign In Now"}
+                </p>
             </form>
         </div>
     )
 };
-
 export default Login;
