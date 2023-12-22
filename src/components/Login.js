@@ -21,6 +21,7 @@ const Login = () => {
         if (message) return;
 
         // Sign in/up logic
+        
         if (!isSignInForm) {
             //Sign up logic
             createUserWithEmailAndPassword(
@@ -85,7 +86,11 @@ const Login = () => {
                     alt='BackGround'
                 />
             </div>
-            <form onSubmit={(e) => e.preventDefault()} className='w-full absolute md:w-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
+
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className='w-full absolute md:w-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'
+            >
                 <h1 className='font-semibold text-3xl py-4'>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
                 {!isSignInForm &&
                     <input
@@ -98,12 +103,14 @@ const Login = () => {
                     ref={email}
                     type='text'
                     placeholder='Email Address'
+                    value="john@gmail.com"
                     className='p-4 my-4 w-full bg-gray-700 rounded-lg'
                 />
                 <input
                     ref={password}
                     type='password'
                     placeholder='Password'
+                    value="John@123"
                     className='p-4 my-4  w-full bg-gray-700 rounded-lg'
                 />
                 <p className='text-red-500 font-semibold'>{errorMessage}</p>
