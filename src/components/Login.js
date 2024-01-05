@@ -97,6 +97,7 @@ const Login = () => {
                     ref={email}
                     type='text'
                     placeholder='Email Address'
+                    value="john@gmail.com"
                     className='p-4 my-4 w-full bg-gray-700 rounded-lg'
                 />
                 <input
