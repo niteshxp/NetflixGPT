@@ -34,7 +34,7 @@ const Header = () => {
                 navigate("/")
             }
         });
-        // Unsiubscribe when component unmounts
+        // Unsubscribe when component unmounts
         return () => unsubscribe();
 
     }, [])
